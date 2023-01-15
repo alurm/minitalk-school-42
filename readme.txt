@@ -1,11 +1,11 @@
 Using UNIX signals to send text between processes
 
-Example Shell session (annotated with comments after "#"):
+Example sh session (annotated with comments after "#"):
 
 	$ make
 	$ ./server &
-	13170 # Server prints its PID.
-	$ ./client \
+	$ 13170 # Server prints its PID. The next line is a command.
+	./client \
 		`# Client takes server's PID as the first argument:` \
 		13170 \
 		`# And some message as the second argument:` \
@@ -17,5 +17,9 @@ Example Shell session (annotated with comments after "#"):
 		13170 \
 		"$(printf hello\\n\\1)" \
 		# Will display as hello followed by a new line (hack).
+	$ fg
+	./server
+	^C # Kill it.
+	$ # End of shell session.
 
 License: MIT.
